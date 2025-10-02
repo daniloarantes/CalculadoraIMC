@@ -4,6 +4,9 @@
  */
 package Janelas;
 
+import Objetos.Calculadora;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author danilo.asilv10
@@ -15,6 +18,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -40,6 +44,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setText("Altura");
 
         jBCalcular.setText("Calcular");
+        jBCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCalcularActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("CALCULADORA IMC");
 
@@ -83,6 +92,23 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCalcularActionPerformed
+
+        try {
+            Double peso = Double.parseDouble(jTPeso.getText().replace(",", "."));
+            Double altura = Double.parseDouble(jTAltura.getText().replace(",", "."));
+
+            Calculadora calc = new Calculadora(peso, altura);
+
+            Resultado res = new Resultado(calc);
+            res.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha corretamente os campos");
+        }
+
+
+    }//GEN-LAST:event_jBCalcularActionPerformed
 
     /**
      * @param args the command line arguments
